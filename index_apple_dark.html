@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio – Dark Glass</title>
+
+<style>
+    :root {
+        --bg: #050509;
+        --card: rgba(255,255,255,0.04);
+        --accent: #0ea5e9;
+        --accent-soft: rgba(14,165,233,0.24);
+        --text-main: #f9fafb;
+        --text-muted: #9ca3af;
+        --border-subtle: rgba(148,163,184,0.4);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 60%, #020617 100%);
+        color: var(--text-main);
+        scroll-behavior: smooth;
+        animation: fadeIn 0.85s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(18px);
+        background: linear-gradient(to bottom, rgba(15,23,42,0.95), rgba(15,23,42,0.75));
+        border-bottom: 1px solid rgba(148,163,184,0.35);
+        padding: 10px 18px;
+    }
+
+    .nav-inner {
+        max-width: 1040px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo {
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        font-size: 18px;
+    }
+
+    .logo span {
+        color: var(--accent);
+    }
+
+    nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-left: 14px;
+        font-size: 14px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        transition: 0.22s ease;
+    }
+
+    nav a:hover {
+        color: var(--text-main);
+        border-color: rgba(148,163,184,0.7);
+        background: rgba(15,23,42,0.7);
+    }
+
+    .pill {
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.5);
+        font-size: 11px;
+        color: var(--text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: radial-gradient(circle at top left, rgba(148,163,184,0.5), rgba(15,23,42,0.9));
+    }
+
+    .pill-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 10px rgba(34,197,94,0.8);
+    }
+
+    .hero {
+        max-width: 1040px;
+        margin: 40px auto 10px;
+        padding: 0 18px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 26px;
+        align-items: center;
+    }
+
+    .hero-left h1 {
+        font-size: 30px;
+        line-height: 1.15;
+        margin: 10px 0 14px;
+    }
+
+    .hero-left p {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .btn-primary, .btn-ghost {
+        font-size: 14px;
+        border-radius: 999px;
+        padding: 9px 16px;
+        border: 1px solid transparent;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: 0.22s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+        color: #0f172a;
+        font-weight: 600;
+        box-shadow: 0 8px 18px rgba(56,189,248,0.25);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 26px rgba(56,189,248,0.36);
+    }
+
+    .btn-ghost {
+        border-color: rgba(148,163,184,0.7);
+        color: var(--text-main);
+        background: rgba(15,23,42,0.8);
+    }
+
+    .btn-ghost:hover {
+        background: rgba(15,23,42,1);
+        border-color: var(--accent);
+    }
+
+    .hero-right {
+        justify-self: center;
+        width: 250px;
+        height: 250px;
+        border-radius: 32px;
+        background: radial-gradient(circle at top, rgba(56,189,248,0.16), transparent 60%),
+                    radial-gradient(circle at bottom, rgba(15,23,42,1), #020617);
+        border: 1px solid rgba(148,163,184,0.6);
+        box-shadow: 0 18px 45px rgba(15,23,42,0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .circle-inner {
+        width: 84%;
+        height: 84%;
+        border-radius: 26px;
+        background: radial-gradient(circle at top left, rgba(248,250,252,0.06), rgba(15,23,42,0.9));
+        border: 1px solid rgba(148,163,184,0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 18px;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    .glow-orb {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(56,189,248,0.65), transparent 70%);
+        top: -16px;
+        right: -10px;
+        opacity: 0.8;
+        filter: blur(1px);
+    }
+
+    .section {
+        max-width: 1040px;
+        margin: 24px auto;
+        padding: 0 18px;
+    }
+
+    .card {
+        background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(15,23,42,0.9));
+        border-radius: 18px;
+        padding: 22px 20px;
+        box-shadow: 0 14px 40px rgba(15,23,42,0.9);
+        border: 1px solid rgba(148,163,184,0.4);
+        backdrop-filter: blur(18px);
+        margin-bottom: 18px;
+        transition: 0.25s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 55px rgba(15,23,42,1);
+        border-color: rgba(148,163,184,0.7);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .section-title span {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+    }
+
+    .subtitle {
+        color: var(--text-muted);
+        font-size: 13px;
+    }
+
+    .skills-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .skill-pill {
+        padding: 7px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(148,163,184,0.6);
+        font-size: 12px;
+        color: var(--text-muted);
+        background: radial-gradient(circle at top left, rgba(148,163,184,0.3), rgba(15,23,42,0.95));
+    }
+
+    ul {
+        padding-left: 18px;
+        margin: 8px 0;
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    li { margin-bottom: 4px; }
+
+    .predict-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        margin: 10px 0 16px;
+    }
+
+    .predict-grid input {
+        background: rgba(15,23,42,0.9);
+        border-radius: 10px;
+        border: 1px solid rgba(148,163,184,0.7);
+        padding: 8px 10px;
+        font-size: 13px;
+        color: var(--text-main);
+    }
+
+    .predict-grid input::placeholder {
+        color: rgba(148,163,184,0.8);
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(15,23,42,0.85);
+        border: 1px solid rgba(148,163,184,0.5);
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-bottom: 8px;
+    }
+
+    .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+        box-shadow: 0 0 8px rgba(56,189,248,0.9);
+    }
+
+    #result {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    footer {
+        max-width: 1040px;
+        margin: 10px auto 30px;
+        padding: 0 18px;
+        font-size: 12px;
+        color: var(--text-muted);
+        text-align: center;
+    }
+
+    @media (max-width: 780px) {
+        .hero {
+            grid-template-columns: minmax(0,1fr);
+            text-align: left;
+        }
+        .hero-right {
+            order: -1;
+            margin-bottom: 10px;
+        }
+        header {
+            padding: 14px 16px;
+        }
+        .hero-left h1 {
+            font-size: 24px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="nav-inner">
+        <div class="logo"><span>&#9679;</span> Portfolio</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#predict">Prediction</a>
+        </nav>
+    </div>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-left">
+        <div class="pill">
+            <span class="pill-dot"></span>
+            Data Science & Machine Learning
+        </div>
+        <h1>Clean, modern portfolio template for ML projects.</h1>
+        <p>
+            This single-page dark-glass layout is designed for a data & AI focused profile.
+            You can later edit the text to match your own journey, projects and achievements.
+        </p>
+        <div class="hero-buttons">
+            <a href="#projects" class="btn-primary">View Project</a>
+            <a href="#about" class="btn-ghost">About & Skills</a>
+        </div>
+    </div>
+    <div class="hero-right">
+        <div class="glow-orb"></div>
+        <div class="circle-inner">
+            <div>
+                <div style="font-size:13px; color:var(--text-main); font-weight:500; margin-bottom:6px;">
+                    Heart Disease Prediction
+                </div>
+                <div style="font-size:12px;">
+                    Logistic Regression model wrapped as an API,
+                    ready to be connected with this UI for live predictions.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="section">
+    <div class="card">
+        <div class="section-title"><span></span><div>About & Skills</div></div>
+        <div class="subtitle">
+            This section describes the skills relevant to data science, AI and software engineering.
+            You can replace the text and add your own story safely later.
+        </div>
+
+        <div style="margin-top:14px; font-size:13px; color:var(--text-muted); line-height:1.5;">
+            This template is focused on core tools used in data science and machine learning,
+            including programming languages, libraries, and deployment technologies.
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-pill">Python</div>
+            <div class="skill-pill">R Language</div>
+            <div class="skill-pill">Statistics</div>
+            <div class="skill-pill">NumPy</div>
+            <div class="skill-pill">Pandas</div>
+            <div class="skill-pill">TensorFlow</div>
+            <div class="skill-pill">Matplotlib</div>
+            <div class="skill-pill">Seaborn</div>
+            <div class="skill-pill">OpenCV</div>
+            <div class="skill-pill">Machine Learning</div>
+            <div class="skill-pill">Deep Learning</div>
+            <div class="skill-pill">SQL</div>
+            <div class="skill-pill">Big Data</div>
+            <div class="skill-pill">Git</div>
+            <div class="skill-pill">GitHub</div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="section">
+    <div class="card">
+        <div class="section-title"><span></span><div>Projects</div></div>
+        <div class="subtitle">Example: Heart Disease Prediction using Logistic Regression.</div>
+
+        <div style="margin-top:10px; font-size:13px; color:var(--text-muted); line-height:1.5;">
+            This project focuses on predicting the possibility of heart disease based on
+            structured health data. A Logistic Regression model is trained on features such
+            as age, blood pressure, cholesterol and other medically relevant parameters.
+        </div>
+
+        <ul>
+            <li>Performed data cleaning and preprocessing for reliable inputs.</li>
+            <li>Explored correlations between features and target labels.</li>
+            <li>Trained a Logistic Regression classifier for binary prediction.</li>
+            <li>Evaluated using accuracy and additional metrics.</li>
+            <li>Packaged the final model into a Flask API for deployment.</li>
+        </ul>
+    </div>
+</section>
+
+<section id="predict" class="section">
+    <div class="card">
+        <div class="section-title"><span></span><div>Heart Disease Prediction – Demo Form</div></div>
+        <div class="badge">
+            <span class="badge-dot"></span>
+            Frontend ready &ndash; connect backend URL to go live
+        </div>
+        <div class="subtitle">
+            Enter numeric values (example features). After the backend is deployed, this form
+            will send data to the API and return a prediction.
+        </div>
+
+        <div class="predict-grid">
+            <input id="f1" placeholder="Feature 1">
+            <input id="f2" placeholder="Feature 2">
+            <input id="f3" placeholder="Feature 3">
+            <input id="f4" placeholder="Feature 4">
+            <input id="f5" placeholder="Feature 5">
+            <input id="f6" placeholder="Feature 6">
+            <input id="f7" placeholder="Feature 7">
+            <input id="f8" placeholder="Feature 8">
+            <input id="f9" placeholder="Feature 9">
+            <input id="f10" placeholder="Feature 10">
+        </div>
+
+        <button onclick="predict()">Run Prediction</button>
+
+        <div id="result"></div>
+    </div>
+</section>
+
+<footer>
+    Single-page portfolio template &mdash; you can safely replace the text and extend this layout
+    with more projects as you grow your skills.
+</footer>
+
+<script>
+async function predict() {
+    const api = "YOUR_BACKEND_URL/predict"; // replace when backend is deployed
+
+    if (api.includes("YOUR_BACKEND_URL")) {
+        document.getElementById("result").innerHTML =
+            "⚠️ Backend is not connected yet. Add your deployed API URL in the code.";
+        return;
+    }
+
+    const features = [
+        Number(document.getElementById("f1").value),
+        Number(document.getElementById("f2").value),
+        Number(document.getElementById("f3").value),
+        Number(document.getElementById("f4").value),
+        Number(document.getElementById("f5").value),
+        Number(document.getElementById("f6").value),
+        Number(document.getElementById("f7").value),
+        Number(document.getElementById("f8").value),
+        Number(document.getElementById("f9").value),
+        Number(document.getElementById("f10").value)
+    ];
+
+    try {
+        const res = await fetch(api, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ features: features })
+        });
+
+        const data = await res.json();
+
+        let label = (data.prediction === 1) ? "💓 Heart Disease" : "✔ No Heart Disease";
+        document.getElementById("result").innerHTML =
+            label + "<br><span style='font-size:12px;color:#9ca3af;'>Raw response: "
+            + JSON.stringify(data) + "</span>";
+    } catch (err) {
+        document.getElementById("result").innerHTML =
+            "Request failed. Please check your backend URL.";
+    }
+}
+</script>
+
+</body>
+</html>
